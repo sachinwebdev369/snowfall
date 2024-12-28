@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .wrapper{
+            width: 100vw;
+    height: 100vh;
+    /* background: linear-gradient(-2deg, hsl(130 68% 6% / 1), hsl(130 51% 5% / 1), hsl(224 78% 7% / 1), hsl(224 78% 10% / 1), #071438); */
+    background: linear-gradient(0deg, #383e3e47, #072a3b82), url(img2.jpg);
+    background-size: cover;
+    position: relative;
+    transition: all .3s ease;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+        }
+
+        .snow{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 60% 34%;
+            rotate: -45deg;
+            animation: snowfall 6s ease-in-out infinite ;
+            /* transition: all .3s ease; */
+            z-index: 1000;
+        }
+        @keyframes snowfall {
+            0%{
+                top: -5vh;
+                opacity: 0.8;
+                transform: translate(0px, 5px);
+            }
+            10% {
+                /* top: 6vh; */
+                opacity: 1;
+                transform: translate(-5px, 0px);
+            }
+            30% {
+                /* top: 30vh; */
+                opacity: 0.6;
+                transform: translate(0px, 5px);
+              
+            }
+            30% {
+                /* top: 30vh; */
+                opacity: 0.8;
+                transform: translate(-5px, 0px);
+              
+            }
+            50% {
+                /* top: 50vh; */
+                opacity: 0.9;
+                transform: translate(0px, 5px);
+            }
+            70% {
+                /* top: 70vh; */
+                opacity: 0.6;
+                transform: translate(5px, 0px);
+            }
+            85% {
+                /* top: 85vh; */
+                opacity: 0.9;
+                transform: translate(0px, 5px);
+              
+            }
+            100% {
+                top: 95vh;
+                opacity: 0.3;
+                transform: translate(0px, 0px);
+            }
+        }
+        .name {
+            position: absolute;
+    top: 20%;
+    left: 0;
+    font-size: 5em;
+    color: #efe9e245;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    font-family: sans-serif;
+    letter-spacing: 1.2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    </div>
+    <div class="name">Sachin</div>
+
+<script>
+const wrapper = document.querySelector('.wrapper')
+const snow =  document.querySelector('.snow')
+
+// const windowWidth = window.outerWidth
+
+let minSize = 2, 
+maxSize = 10,
+snowFallParMilliseconds = 100;
+
+
+const createSnowFall = (leftValue, snowSize) => {
+    let element = document.createElement('div')
+
+    element.classList.add('snow')
+    element.style.left = `calc(${leftValue}% - 20px)`
+    element.style.width = `calc(${snowSize}px + 0.5vh)`
+    element.style.height = `calc(${snowSize}px + 0.5vh)`
+
+wrapper.appendChild(element)
+setTimeout(()=> {
+    element.remove()
+}, 10000)
+}
+
+    const snowFall = () => {
+        const leftNum = Math.round(Math.random() * 95) + 5
+        const snowSize = Math.round(Math.random() * (maxSize - minSize) + minSize)
+
+
+        // snow.style.left = `calc(${leftNum}% - 20px)`
+        createSnowFall(leftNum, snowSize)
+    }
+
+
+setInterval(() => {
+    snowFall()
+}, snowFallParMilliseconds);
+
+    // snowFall()
+
+
+</script>
+
+</body>
+</html>
